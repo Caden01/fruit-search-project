@@ -87,12 +87,16 @@ function search(str) {
   // let results = [];
 
   // TODO
+  suggestions.innerHTML = "";
   let keys = input.value + str.key;
   console.log(keys);
   let lowerCaseKeys = keys.toLowerCase();
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
     if (lowerCaseStr.includes(lowerCaseKeys)) {
+      let newLi = document.createElement("li");
+      suggestions.append(newLi);
+      newLi.append(str);
       return str;
     }
   });
@@ -103,6 +107,7 @@ function search(str) {
 
 function searchHandler(e) {
   // TODO
+  console.log(e.target);
 }
 
 function showSuggestions(results, inputVal) {
@@ -114,5 +119,6 @@ function useSuggestion(e) {
 }
 
 input.addEventListener("keypress", search);
-input.addEventListener("keyup", searchHandler);
+// input.addEventListener("keyup", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
+suggestions.addEventListener("mouseover", searchHandler);
