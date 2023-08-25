@@ -6,12 +6,28 @@
  /* TODO */
 }
 
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  
+}
+
 body {
   /* TODO */
+  margin: 0px;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to top right, yellow, orangered);
 }
 
 input {
  /* TODO */
+ background-color: rgba(255, 255, 255, 0.5);
+ border-color: rgba(255, 255, 255, 0.5);
+ padding: 10px;
 }
 
 .search-container {
@@ -20,6 +36,7 @@ input {
 .search-container input,
 .search-container .suggestions {
   /* TODO */
+
 }
 .search-container input {
  /* TODO */
@@ -30,12 +47,19 @@ input {
 
 ul {
   /* TODO */
+  background-color: rgba(255, 255, 255, 0.5);
+ padding: 10px;
 }
+
 ul.has-suggestions {
   /* TODO */
 }
+
 ul li {
   /* TODO */
+  background-color: rgba(255, 255, 255, 0.5);
+ padding: 10px;
+ list-style: none;
 }
 ul li:hover {
   /* TODO */
