@@ -85,11 +85,11 @@ const fruit = [
 
 function search(str) {
   // let results = [];
-
+  // console.log(str);
   // TODO
   suggestions.innerHTML = "";
   let keys = input.value + str.key;
-  console.log(keys);
+  // console.log(keys);
   let lowerCaseKeys = keys.toLowerCase();
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
@@ -101,7 +101,7 @@ function search(str) {
     }
   });
 
-  console.log(searchFruit);
+  // console.log(searchFruit);
   return searchFruit;
 }
 
@@ -112,13 +112,16 @@ function searchHandler(e) {
 
 function showSuggestions(results, inputVal) {
   // TODO
+  console.log(results);
+  console.log(inputVal);
 }
 
 function useSuggestion(e) {
   // TODO
+  input.value = e.target.innerHTML;
 }
 
 input.addEventListener("keypress", search);
 // input.addEventListener("keyup", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
-// suggestions.addEventListener("mouseover", searchHandler);
+input.addEventListener("keypress", showSuggestions);
