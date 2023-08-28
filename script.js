@@ -107,7 +107,7 @@ function search(str) {
 
 function searchHandler(e) {
   // TODO
-  console.log(e.target);
+  // console.log(e.target);
 }
 
 function showSuggestions(results, inputVal) {
@@ -121,4 +121,4 @@ function useSuggestion(e) {
 input.addEventListener("keypress", search);
 // input.addEventListener("keyup", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
-suggestions.addEventListener("mouseover", searchHandler);
+// suggestions.addEventListener("mouseover", searchHandler);
