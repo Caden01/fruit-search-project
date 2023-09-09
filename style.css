@@ -36,7 +36,6 @@ input {
 .search-container input,
 .search-container .suggestions {
   /* TODO */
-  
 
 }
 .search-container input {
@@ -57,6 +56,7 @@ ul {
 
 ul.has-suggestions {
   /* TODO */
+  font-weight: bold;
 }
 
 ul li {

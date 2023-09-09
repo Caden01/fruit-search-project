@@ -94,26 +94,27 @@ function search(str) {
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
     if (lowerCaseStr.includes(lowerCaseKeys)) {
+      let regex = new RegExp(keys, "gi");
+      let boldLetters = str.replace(regex, "<b>" + keys + "</b>");
+      console.log(boldLetters);
       let newLi = document.createElement("li");
       suggestions.append(newLi);
       newLi.append(str);
+      newLi.innerHTML = boldLetters;
       return str;
     }
   });
+  console.log(searchFruit);
 
-  // console.log(searchFruit);
   return searchFruit;
 }
 
 function searchHandler(e) {
   // TODO
-  // console.log(e.target);
 }
 
 function showSuggestions(results, inputVal) {
   // TODO
-  console.log(results);
-  console.log(inputVal);
 }
 
 function useSuggestion(e) {
@@ -122,6 +123,12 @@ function useSuggestion(e) {
 }
 
 input.addEventListener("keypress", search);
+// input.addEventListener("keydown", (e) => {
+//   if (e.key === "Backspace") {
+//     console.log(search(input.value));
+//   }
+//   console.log(input.value);
+// });
 // input.addEventListener("keyup", searchHandler);
 suggestions.addEventListener("click", useSuggestion);
 input.addEventListener("keypress", showSuggestions);
