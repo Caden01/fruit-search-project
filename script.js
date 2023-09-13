@@ -84,19 +84,26 @@ const fruit = [
 ];
 
 function search(str) {
-  // let results = [];
-  // console.log(str);
   // TODO
-  suggestions.innerHTML = "";
-  let keys = input.value + str.key;
-  // console.log(keys);
+  console.log(str.key);
+  let keys;
+  if (str.key === "Backspace") {
+    suggestions.innerHTML = "";
+    let results = input.value.split("");
+    results.pop();
+    keys = results.join("");
+
+    console.log(keys);
+  } else {
+    suggestions.innerHTML = "";
+    keys = input.value + str.key;
+  }
   let lowerCaseKeys = keys.toLowerCase();
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
     if (lowerCaseStr.includes(lowerCaseKeys)) {
       let regex = new RegExp(keys, "gi");
       let boldLetters = str.replace(regex, "<b>" + keys + "</b>");
-      console.log(boldLetters);
       let newLi = document.createElement("li");
       suggestions.append(newLi);
       newLi.append(str);
@@ -104,7 +111,6 @@ function search(str) {
       return str;
     }
   });
-  console.log(searchFruit);
 
   return searchFruit;
 }
@@ -122,7 +128,7 @@ function useSuggestion(e) {
   input.value = e.target.innerHTML;
 }
 
-input.addEventListener("keypress", search);
+input.addEventListener("keydown", search);
 // input.addEventListener("keydown", (e) => {
 //   if (e.key === "Backspace") {
 //     console.log(search(input.value));
