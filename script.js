@@ -85,12 +85,16 @@ const fruit = [
 
 function search(str) {
   // TODO
+
+  let alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let keys;
   if (str.key === "Backspace") {
     suggestions.innerHTML = "";
     let results = input.value.split("");
     results.pop();
     keys = results.join("");
+  } else if (!alph.includes(str.key)) {
+    return;
   } else {
     suggestions.innerHTML = "";
     keys = input.value + str.key;
@@ -101,9 +105,8 @@ function search(str) {
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
     if (lowerCaseStr.includes(lowerCaseKeys)) {
-      let regex = new RegExp(keys, "i");
-      let boldLetters;
-      boldLetters = str.replace(regex, "<b>" + keys + "</b>");
+      let regex = new RegExp(keys, "g");
+      let boldLetters = str.replace(regex, "<b>" + keys + "</b>");
 
       let newLi = document.createElement("li");
       suggestions.append(newLi);
@@ -128,8 +131,10 @@ function useSuggestion(e) {
   // TODO
   if (e.target.nodeName === "LI") {
     input.value = e.target.innerText;
+    suggestions.innerHTML = "";
   } else if (e.target.nodeName === "B") {
     input.value = e.target.parentElement.innerText;
+    suggestions.innerHTML = "";
   }
 }
 
