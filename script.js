@@ -105,16 +105,19 @@ function search(str) {
   let searchFruit = fruit.filter((str) => {
     lowerCaseStr = str.toLowerCase();
     if (lowerCaseStr.includes(lowerCaseKeys)) {
-      let regex = new RegExp(keys, "g");
-      let boldLetters = str.replace(regex, "<b>" + keys + "</b>");
-
-      let newLi = document.createElement("li");
-      suggestions.append(newLi);
-      newLi.append(str);
-      newLi.innerHTML = boldLetters;
       return str;
     }
   });
+
+  for (let i = 0; i < searchFruit.length; i++) {
+    let boldLetters = searchFruit[i];
+    let match = boldLetters.match(new RegExp(keys, "i"));
+    boldLetters = boldLetters.replace(match[0], "<b>" + match[0] + "</b>");
+    let newLi = document.createElement("li");
+    suggestions.append(newLi);
+    newLi.append(boldLetters);
+    newLi.innerHTML = boldLetters;
+  }
 
   return searchFruit;
 }
@@ -140,4 +143,3 @@ function useSuggestion(e) {
 
 input.addEventListener("keydown", search);
 suggestions.addEventListener("click", useSuggestion);
-input.addEventListener("keypress", showSuggestions);
