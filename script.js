@@ -109,16 +109,7 @@ function search(str) {
     }
   });
 
-  for (let i = 0; i < searchFruit.length; i++) {
-    let boldLetters = searchFruit[i];
-    let match = boldLetters.match(new RegExp(keys, "i"));
-    boldLetters = boldLetters.replace(match[0], "<b>" + match[0] + "</b>");
-    let newLi = document.createElement("li");
-    suggestions.append(newLi);
-    newLi.append(boldLetters);
-    newLi.innerHTML = boldLetters;
-  }
-
+  showSuggestions(searchFruit, keys);
   return searchFruit;
 }
 
@@ -128,6 +119,15 @@ function searchHandler(e) {
 
 function showSuggestions(results, inputVal) {
   // TODO
+  for (let i = 0; i < results.length; i++) {
+    let boldLetters = results[i];
+    let match = boldLetters.match(new RegExp(inputVal, "i"));
+    boldLetters = boldLetters.replace(match[0], "<b>" + match[0] + "</b>");
+    let newLi = document.createElement("li");
+    suggestions.append(newLi);
+    newLi.append(boldLetters);
+    newLi.innerHTML = boldLetters;
+  }
 }
 
 function useSuggestion(e) {
