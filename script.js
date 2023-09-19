@@ -1,5 +1,6 @@
 const input = document.querySelector("#fruit");
 const suggestions = document.querySelector(".suggestions ul");
+const body = document.querySelector("body");
 
 const fruit = [
   "Apple",
@@ -84,8 +85,6 @@ const fruit = [
 ];
 
 function search(str) {
-  // TODO
-
   let alph = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let keys;
   if (str.key === "Backspace") {
@@ -118,7 +117,6 @@ function searchHandler(e) {
 }
 
 function showSuggestions(results, inputVal) {
-  // TODO
   for (let i = 0; i < results.length; i++) {
     let boldLetters = results[i];
     let match = boldLetters.match(new RegExp(inputVal, "i"));
@@ -131,7 +129,6 @@ function showSuggestions(results, inputVal) {
 }
 
 function useSuggestion(e) {
-  // TODO
   if (e.target.nodeName === "LI") {
     input.value = e.target.innerText;
     suggestions.innerHTML = "";
@@ -141,5 +138,14 @@ function useSuggestion(e) {
   }
 }
 
+function hideSuggestions(e) {
+  if (e.target.nodeName === "INPUT") {
+    suggestions.style.visibility = "visible";
+  } else if (e.target.nodeName === "BODY") {
+    suggestions.style.visibility = "hidden";
+  }
+}
+
 input.addEventListener("keydown", search);
 suggestions.addEventListener("click", useSuggestion);
+body.addEventListener("click", hideSuggestions);
